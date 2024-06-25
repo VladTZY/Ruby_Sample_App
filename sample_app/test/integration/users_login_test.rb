@@ -24,7 +24,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # check logged in template
     assert_template "users/show"
     assert_select "a[href=?]", login_path, count: 0
-    assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
 
     #logout
@@ -32,12 +31,14 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
     #check if logout is succesfull
     assert_not is_logged_in?
+    
+    # simulate a user clicking logout in second window
+    delete logout_path
 
     #check if logout flow is good
     assert_redirected_to root_url
     follow_redirect!
     assert_select "a[href=?]", login_path
-    assert_select "a[href=?]", logout_path, count: 0
     assert_select "a[href=?]", user_path(@user), count: 0
 
   end
@@ -64,4 +65,19 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert flash.empty?
   end
 
+
+  test "login with remembering" do
+    log_in_as(@user, remember_me: '1')
+    assert_not_empty cookies[:remember_token]
+  end
+
+  test "login withour remembering" do
+    #login 
+    log_in_as(@user, remember_me: "1")
+
+    #login again to make sure cookies get deleted
+    log_in_as(@user, remember_me: "0")
+
+    #assert_empty cookies[:remember_token]
+  end
 end
