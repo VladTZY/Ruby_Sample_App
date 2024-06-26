@@ -1,0 +1,14 @@
+<% provide(:title, "All users") %>
+<h1> All users </h1>
+
+<div class = "pag-bar mt-5 pt-5">
+    <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</div>
+
+<ul class="users">
+    <%= render @users %>
+</ul>
+
+<div class = "pag-bar mt-5 pt-5">
+    <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</div>
