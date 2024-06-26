@@ -9,19 +9,21 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+
+    redirect_to root_url and return unless @user.activated?
   end
   
   def index
-    @pagy, @users = pagy(User.all)
+    @pagy, @users = pagy(User.where(activated: true))
   end
 
   def create
     @user = User.new(user_params)
 
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to the Sample app"
-      redirect_to @user
+      @user.send_activation_email
+      flash[:success] = "Please check your email to activate your account"
+      redirect_to root_url
     else
       render 'new', status: 500
     end
