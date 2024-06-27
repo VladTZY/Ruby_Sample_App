@@ -1,0 +1,21 @@
+orange:
+  content: "Organge"
+  created_at: <%= 10.minutes.ago %>
+  user: vlad
+
+lorem:
+  content: "Lorem ispum"
+  created_at: <%= 2.hours.ago %>
+  user: vlad
+
+most_recent:
+  content: "Writing a short test"
+  created_at: <%= Time.zone.now %>
+  user: vlad
+
+<% 30.times do |n| %>
+micropost_<%= n %>:
+  content: <%= Faker::Lorem.sentence(word_count: 5) %>
+  created_at: <%= 42.days.ago %>
+  user: vlad
+<% end %>

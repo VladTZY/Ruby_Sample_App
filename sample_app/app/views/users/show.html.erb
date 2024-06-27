@@ -7,5 +7,18 @@
                 <%= @user.name %>
             </h1> 
         </section>
-    </aside> 
+    </aside>
+
+    <div class="col-md-8">
+        <% if @user.microposts.any? %>
+            <h3>Microposts (<%= @user.microposts.count %>)</h3>
+
+            <ol class="microposts">
+                <%= render @microposts %>
+            </ol>
+            <div class = "pag-bar mt-5 pt-5">
+                <%== pagy_bootstrap_nav(@pagy_microposts) if @pagy_microposts.pages > 1 %>
+            </div>  
+        <% end %>
+    </div>
 </div>
