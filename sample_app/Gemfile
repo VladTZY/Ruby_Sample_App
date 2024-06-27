@@ -83,3 +83,9 @@ gem "will_paginate", "~> 4.0"
 gem "bootstrap-will_paginate", "~> 1.0"
 
 gem "pagy", "~> 8.5"
+
+gem "active_storage_validations", "~> 1.1"
+
+gem "image_processing", "~> 1.12"
+
+gem "mini_magick", "~> 4.13"

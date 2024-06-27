@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @pagy_microposts, @microposts = pagy(@user.microposts)
 
     redirect_to root_url and return unless @user.activated?
   end
@@ -57,14 +58,6 @@ class UsersController < ApplicationController
                                    :email,
                                    :password,
                                    :password_confirmation)
-    end
-
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in"
-        redirect_to login_url
-      end
     end
 
     def correct_user
