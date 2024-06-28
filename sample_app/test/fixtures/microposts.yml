@@ -13,6 +13,16 @@ most_recent:
   created_at: <%= Time.zone.now %>
   user: vlad
 
+maria_micropost:
+  content: "Writing a short test"
+  created_at: <%= 2.minutes.ago %>
+  user: maria
+
+mihai_micropost:
+  content: "Writing a short test"
+  created_at: <%= 3.minutes.ago %>
+  user: mihai
+
 <% 30.times do |n| %>
 micropost_<%= n %>:
   content: <%= Faker::Lorem.sentence(word_count: 5) %>

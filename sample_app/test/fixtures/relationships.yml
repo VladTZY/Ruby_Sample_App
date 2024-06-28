@@ -1,0 +1,15 @@
+one:
+  follower: maria
+  followed: mihai
+
+two:
+  follower: maria
+  followed: ana
+
+three:
+  follower: vlad
+  followed: maria
+
+four:
+  follower: ana
+  followed: mihai
