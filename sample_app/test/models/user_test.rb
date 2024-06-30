@@ -107,6 +107,7 @@ class UserTest < ActiveSupport::TestCase
     mihai = users(:mihai)
     maria = users(:maria)
 
+    #debugger
     # posts from self
     vlad.microposts.each do |post_self|
       assert vlad.feed.include?(post_self)
